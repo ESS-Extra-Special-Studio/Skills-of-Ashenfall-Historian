@@ -201,12 +201,14 @@ check(fell == 16, "the three Fellhollow series are in band 3")
 
 -- 2. Full runs through main.lua ------------------------------------------
 -- Each run files entries one at a time, in a random order, with a sync after
--- each, as the game would.
+-- each, as the game would. The player stands at the Bramblemead ruins unless
+-- opts gives another position.
 local function run(order, opts)
     opts = opts or {}
     load_main(opts.config)
     unlocked, unreadSet = {}, {}
-    world.x, world.y = opts.x or 0, opts.y or 0
+    local site = Sources.SITES.bramblemead
+    world.x, world.y = opts.x or site.x or 0, opts.y or site.y or 0
     tick() -- first sync with an empty journal: nothing to do
     for i, id in ipairs(order) do
         unlocked[#unlocked + 1] = id
@@ -313,7 +315,7 @@ check(#cards == 0, "quiet mode shows no Historian cards")
 
 -- 4. Site visit -------------------------------------------------------------
 local site = Sources.SITES.bramblemead
-site.x, site.y = 100000, 50000
+check(site.x == 45441 and site.y == 169142, "Bramblemead ruins coordinates are recorded")
 run(band1, { x = 0, y = 0 })
 check(state.xp < CAP and not state.seen[recon.id], "away from the site the reconstruction waits")
 local prompted = 0
@@ -321,10 +323,9 @@ for _, c in ipairs(cards) do if c.kicker == S.SITE_KICKER then prompted = prompt
 check(prompted <= 1, "site prompt shows at most once")
 binds.F7()
 check(ESL.lastLedger:find(site.label, 1, true) ~= nil, "ledger points to the site")
-world.x, world.y = 100000 + 3000, 50000 - 3000
+world.x, world.y = site.x + 3000, site.y - 3000
 tick()
 check(state.xp == CAP and state.seen[recon.id], "at the site the reconstruction pays to 3,152")
-site.x, site.y = nil, nil
 
 -- 5. Ledger -----------------------------------------------------------------
 load_main(nil)

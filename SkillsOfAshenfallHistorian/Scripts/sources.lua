@@ -255,7 +255,7 @@ end
 -- radius (Unreal units, centimetres) of x, y with the evidence owned. A site
 -- with no coordinates is not enforced, so the reconstruction pays anywhere.
 Sources.SITES = {
-    bramblemead = { label = "the ruins of Bramblemead village", x = nil, y = nil, radius = 6000 },
+    bramblemead = { label = "the ruins of Bramblemead village", x = 45441, y = 169142, radius = 6000 },
     -- Later bands (plan only; coordinates are recorded when each band is built).
     keep_of_blue_flames = { label = "the Keep of Blue Flames", radius = 6000 },
     ghornfell = { label = "the garou fortifications of Ghornfell", radius = 8000 },
