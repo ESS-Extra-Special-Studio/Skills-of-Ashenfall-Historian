@@ -486,9 +486,6 @@ if DEV then
             log(x and string.format("Site capture: x = %.0f, y = %.0f, z = %.0f", x, y, z) or "Site capture: no position (load into a world)")
         end, "Historian site capture")
     end)
-    -- Test requirement on bed rolls, to check the prompt plumbing. Shipped
-    -- requirements go only on our own lore books and mod content.
-    ESL.RequireSkill(SKILL, 5, "Bed Roll")
     RegisterKeyBindAsync(Key.F9, {}, function()
         ESL.SelectInSkillsMenu(SKILL)
     end)
