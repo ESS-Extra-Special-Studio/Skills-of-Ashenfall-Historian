@@ -11,7 +11,7 @@ Design and research live on the Desktop, not in this repo:
 Levels 1–25 (3,152 XP). Historian XP comes from the knowledge entries in the game's journal:
 
 - The 20 starting-valley entries pay: 16 lore scraps, the Bramblemead Valley and Temple Woods place records, and two of Cathan's journals. Each has a fixed amount and pays once, when the game files it, in any order.
-- Finishing a set, owning two entries that answer each other (a correlation), and owning the whole valley record (the reconstruction) pay on top. Owning everything always ends exactly on level 25: the reconstruction tops up to 3,152 XP, and the cap stops anything beyond it.
+- Finishing a set and owning two entries that answer each other (a correlation) pay on top, and a correlation files a short note on what the two pages share. The reconstruction, the fall of Bramblemead, needs any 18 of the 20 entries and a visit to the ruins of Bramblemead village; a card tells you when to go. It always ends exactly on level 25: it tops up to 3,152 XP, and the cap stops anything beyond it.
 - Perks at every level from 2 to 25, in the game's perk list:
   - **Minor rows:** +0.5% Historian XP each, with the running total in the middle panel.
   - **Nose in a Book (3):** a card when new history reaches your journal.
@@ -20,20 +20,32 @@ Levels 1–25 (3,152 XP). Historian XP comes from the knowledge entries in the g
   - **He Said, She Said (14):** which page disputes the one you just found.
   - **Primary Sources (19):** Cathan's journals pay 25% more.
   - **Peer Reviewed (25):** the Historian 25 requirement other Skills of Ashenfall mods check.
-  - Perk names and wording are fan-written mod lore, not Jagex canon.
+  - Perk names, correlation notes and card wording are fan-written mod lore, not Jagex canon. The lore entries themselves are the game's own.
 - Entries from later regions are remembered and pay when their band opens in a later version. Tutorials pay nothing.
-- Characters and worlds made before the mod are credited for the entries they already have, quietly, the first time they load.
+- Characters made before the mod are credited for the entries they already have the first time they load, with one card saying what was found. A new character gets a short card explaining the skill instead.
 - Saves from an earlier test build are rebuilt once from the journal; old XP amounts are not carried over.
 
-Progress is saved per character in `ESLDragonWilds/Saves/<Character>.Historian.txt`. The game's own character save is never modified.
+Progress is saved per character, by the character's id from the game save, in `%LOCALAPPDATA%\RSDragonwilds\Saved\ESLDragonWilds\`, beside the game's own saved data, so updating or reinstalling the mod keeps it. The game's own save files are only read, never written.
+
+If the installed game is a different Steam build from the one Historian was tested on (25632050), one card says so; it shows once per build.
 
 The 1–99 plan, the lore-book gates and the level 75 combat gates are in `<studio>\docs\HISTORIAN_1-99.md`. What appears on each game screen, with screenshots, is in `docs\SKILL_SURFACE_CHECKLIST.md`.
 
-## Keys
+## Keys and settings
 
-- **F7** shows Historian's level and XP; from level 6 it also counts your unread history.
+- **F7** opens the ledger: level and XP, records filed, each set's progress, the correlations and reconstruction, what to look for next, and entries kept for later regions. From level 6 it also counts your unread history.
 
-With a `dev.txt` file next to the `Scripts` folder, developer keys and test content also load: F8 grants the next unpaid starting-valley entry, F9 selects Historian in the open skills menu, F11 plays every Historian notification, F6 writes widget dumps to the log, and Bed Rolls show a Historian 5 requirement.
+`SkillsOfAshenfallHistorian\config.txt` is created on first run:
+
+```
+ledger_key=F7
+quiet=false
+debug=false
+```
+
+`ledger_key` takes any UE4SS key name (F1 to F12, HOME, END and so on). `quiet=true` turns off Historian's cards and keeps only the game's own XP popups and level-up banner. `debug=true` adds detail to the UE4SS log.
+
+Developer keys load only with a `dev.txt` file next to the `Scripts` folder, and are not part of normal play: F8 grants the next unpaid starting-valley entry, F5 logs your position, F9 selects Historian in the open skills menu, F11 plays every Historian notification, F6 writes widget dumps to the log, and Bed Rolls show a Historian 5 requirement.
 
 ## Requirements
 
