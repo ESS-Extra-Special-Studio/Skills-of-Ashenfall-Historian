@@ -339,6 +339,14 @@ check(L:find("Next: finish Goblin writings (1 to find)", 1, true) ~= nil, "ledge
 check(L:find("Kept for later: 1 records from Whispering Swamp", 1, true) ~= nil, "ledger region hint for a later band")
 check(L:find("Reconstruction: 4 of 18", 1, true) ~= nil, "ledger reconstruction counts to 18")
 
+local Strings = require("historian_strings")
+local singular = true
+for t in pairs(Strings.TYPE) do
+    if not Strings.TYPE_ONE[t] or not Strings.TYPE_PLURAL[t] then singular = false end
+end
+check(singular, "every journal type has an in-sentence singular and plural")
+check(Strings.TYPE_ONE.cathan == "Cathan's journal" and Strings.TYPE_ONE.scrap == "lore scrap", "unread counts keep Cathan's capital")
+
 -- Configurable key.
 load_main("ledger_key = F4\n")
 check(binds.F4 ~= nil and binds.F7 == nil, "ledger key from config.txt")

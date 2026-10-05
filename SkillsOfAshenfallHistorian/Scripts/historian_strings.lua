@@ -20,6 +20,14 @@ S.TYPE = {
     story = "Story page",
     cathan = "Cathan's journal",
 }
+-- Inside a sentence ("1 lore scrap"); Cathan keeps his capital.
+S.TYPE_ONE = {
+    scrap = "lore scrap",
+    place = "place record",
+    people = "account",
+    story = "story page",
+    cathan = "Cathan's journal",
+}
 S.TYPE_PLURAL = {
     scrap = "lore scraps",
     place = "place records",

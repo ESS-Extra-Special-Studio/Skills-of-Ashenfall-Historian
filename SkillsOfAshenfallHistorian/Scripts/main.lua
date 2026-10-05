@@ -215,7 +215,7 @@ local function unread_summary()
     local parts = {}
     for _, t in ipairs(order) do
         local n = counts[t]
-        if n then parts[#parts + 1] = n .. " " .. (n == 1 and S.TYPE[t]:lower() or S.TYPE_PLURAL[t]) end
+        if n then parts[#parts + 1] = n .. " " .. (n == 1 and S.TYPE_ONE[t] or S.TYPE_PLURAL[t]) end
     end
     if #parts == 0 then return S.LEDGER_UNREAD_NONE end
     return string.format(S.LEDGER_UNREAD, table.concat(parts, ", "))
