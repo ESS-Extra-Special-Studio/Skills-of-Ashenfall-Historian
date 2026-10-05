@@ -84,7 +84,8 @@ add(2, "cathan", 600, {
 })
 
 -- Band 3, levels 41-60: Fractured Plains, Stormtouched Highlands, the Vaults,
--- the Fellhollow story series and the Scorned Wilderness books.
+-- the Scorned Wilderness books and every Fellhollow story series (the cells
+-- place all six series in Fellhollow).
 add(3, "place", 1500, {
     { "Place_FracturedPlains", "Fractured Plains" },
     { "Place_StormtouchedHighlands", "Stormtouched Highlands" },
@@ -97,12 +98,12 @@ add(3, "scrap", 1000, {
     { "LoreScrap_E3", "Infused Journal" },
     { "LoreScrap_E4", "Dragonkin Notebook Page" },
 })
-add(3, "story", 1500, {
+add(3, "story", 1000, {
     { "DogDays", "Ritual of Purification" },
     { "Vault_Puzzle_1", "Lacrussa's Memoir" },
     { "Vault_Puzzle_2", "Rot-covered Journal" },
 })
-add(3, "scrap", 1500, {
+add(3, "scrap", 1000, {
     { "SW_LoreScrap_CriticalPath_Book1", "Anima-infused Tome" },
     { "SW_LoreScrap_CriticalPath_Book2", "Lavish Dragonkin Tome" },
     { "SW_LoreScrap_CriticalPath_Book3", "Flame-licked Journal" },
@@ -110,13 +111,13 @@ add(3, "scrap", 1500, {
     { "SW_LoreScrap_CriticalPath_Book5", "Scorched Tome" },
     { "SW_LoreScrap_CriticalPath_Book6", "Hate-filled Tome" },
 })
-add(3, "scrap", 1000, {
+add(3, "scrap", 750, {
     { "SW_LoreScrap_Optional_Book1", "Confusing Notebook" },
     { "SW_LoreScrap_Optional_Book2", "Aviansie Tome" },
     { "SW_LoreScrap_Optional_Book3", "Damaged Journal" },
     { "SW_LoreScrap_PuzzleText", "Rasthin's Riddle of Faith" },
 })
-add(3, "story", 1000, {
+add(3, "story", 600, {
     { "Dragonwolves_1", "Laboratory Note" },
     { "Dragonwolves_2", "Experiment Log" },
     { "Dragonwolves_3", "The Tale of the Ghost Wolves" },
@@ -130,6 +131,22 @@ add(3, "story", 1000, {
     { "Necromancer_And_The_Wolf_5", "Ravanna's Fifth Journal" },
     { "Necromancer_And_The_Wolf_6", "Ravanna's Sixth Journal" },
     { "Necromancer_And_The_Wolf_7", "Ravanna's Seventh Journal" },
+    { "The_Dragonkin_1", "Lacrussa's Journal" },
+    { "The_Dragonkin_2", "Lacrussa's Notes" },
+    { "The_Dragonkin_3", "Lacrussa's Ravings" },
+    { "The_Dragonkin_4", "Lacrussa's Writings" },
+    { "The_Dragonkin_5", "Lacrussa's Diary" },
+    { "The_Withering_1", "Weathered Diary" },
+    { "The_Withering_2", "Lazily-penned Diary" },
+    { "The_Withering_3", "Dragon-embossed Journal" },
+    { "The_Withering_4", "Battered Diary" },
+    { "The_Withering_5", "Weathered Journal" },
+    { "The_Withering_6", "Withered Diary" },
+    { "The_Rising_Dead_1", "Mould-covered Journal" },
+    { "The_Rising_Dead_2", "Withered Journal" },
+    { "The_Rising_Dead_3", "Soot-stained Journal" },
+    { "The_Rising_Dead_4", "Red-stained Diary" },
+    { "The_Rising_Dead_5", "Priestly Journal" },
 })
 
 -- Band 4, levels 61-80: Dowdun Reach and the Umbral Sands.
@@ -179,25 +196,8 @@ add(4, "story", 2000, {
     { "UmS_WolfandGoddess", "The Wolf and the Goddess" },
 })
 
--- Band 5, levels 81-99.
-add(5, "story", 5000, {
-    { "The_Dragonkin_1", "Lacrussa's Journal" },
-    { "The_Dragonkin_2", "Lacrussa's Notes" },
-    { "The_Dragonkin_3", "Lacrussa's Ravings" },
-    { "The_Dragonkin_4", "Lacrussa's Writings" },
-    { "The_Dragonkin_5", "Lacrussa's Diary" },
-    { "The_Withering_1", "Weathered Diary" },
-    { "The_Withering_2", "Lazily-penned Diary" },
-    { "The_Withering_3", "Dragon-embossed Journal" },
-    { "The_Withering_4", "Battered Diary" },
-    { "The_Withering_5", "Weathered Journal" },
-    { "The_Withering_6", "Withered Diary" },
-    { "The_Rising_Dead_1", "Mould-covered Journal" },
-    { "The_Rising_Dead_2", "Withered Journal" },
-    { "The_Rising_Dead_3", "Soot-stained Journal" },
-    { "The_Rising_Dead_4", "Red-stained Diary" },
-    { "The_Rising_Dead_5", "Priestly Journal" },
-})
+-- Band 5, levels 81-99: the Dragon Altar, the people of Ashenfall, and the
+-- cross-region investigations (Sources.SETS).
 add(5, "place", 5000, {
     { "Place_DragonAltar", "Dragon Altar" },
 })
@@ -256,6 +256,11 @@ end
 -- with no coordinates is not enforced, so the reconstruction pays anywhere.
 Sources.SITES = {
     bramblemead = { label = "the ruins of Bramblemead village", x = nil, y = nil, radius = 6000 },
+    -- Later bands (plan only; coordinates are recorded when each band is built).
+    keep_of_blue_flames = { label = "the Keep of Blue Flames", radius = 6000 },
+    ghornfell = { label = "the garou fortifications of Ghornfell", radius = 8000 },
+    dowdun_reach = { label = "Dowdun Reach", radius = 10000 },
+    fellhollow = { label = "Fellhollow", radius = 10000 },
 }
 
 -- Awards for owning a whole set (series), two pages that disagree
@@ -276,25 +281,29 @@ Sources.SETS = {
     { id = "correlation:velgar_chant", band = 1, kind = "correlation", xp = 175, label = "Why the goblins chant Velgar", ids = ids("CathanJournal_Castle", "LoreScrap_B5") },
     { id = "reconstruction:fall_of_bramblemead", band = 1, kind = "reconstruction", xp = 654, label = "The fall of Bramblemead", ids = band_ids(1), need = 18, site = "bramblemead" },
 
-    -- Band 2: 900 + 700 + 2,400 + 2,477 = 6,477 XP (plus 1,500 from the three skill books).
+    -- Band 2: 900 + 700 + 2,400 + 3,977 = 7,977 XP. The skill books are bonus
+    -- XP on top (Sources.BOOKS), so Historian 40 needs no other mod.
     { id = "set:guthixian_pages", band = 2, kind = "series", xp = 900, label = "The Guthixian pages", ids = series("LoreScrap_C", 5) },
     { id = "set:bloodblight_pages", band = 2, kind = "series", xp = 700, label = "The Bloodblight pages", ids = series("LoreScrap_F", 2) },
     { id = "correlation:horn_and_farewell", band = 2, kind = "correlation", xp = 1200, label = "The horn and the farewell", ids = ids("CathanJournal_Castle", "CathanJournal_Velgarslair") },
     { id = "correlation:garou_beasts_or_kings", band = 2, kind = "correlation", xp = 1200, label = "Garou: beasts or kings", ids = ids("LoreScrap_D1", "LoreScrap_D5") },
-    { id = "reconstruction:swamp_road", band = 2, kind = "reconstruction", xp = 2477, label = "The swamp road", ids = band_ids(2) },
+    { id = "reconstruction:swamp_road", band = 2, kind = "reconstruction", xp = 3977, label = "The swamp road", ids = band_ids(2) },
 
-    -- Band 3: 24,000 + 5,000 + 3,069 = 32,069 XP.
-    { id = "set:garou_pages", band = 3, kind = "series", xp = 2500, label = "The garou pages", ids = series("LoreScrap_D", 5) },
-    { id = "set:dragonkin_pages", band = 3, kind = "series", xp = 2500, label = "The dragonkin pages", ids = series("LoreScrap_E", 4) },
-    { id = "set:vault_puzzle", band = 3, kind = "series", xp = 2000, label = "The Vault puzzle", ids = series("Vault_Puzzle_", 2) },
-    { id = "set:sw_critical_path", band = 3, kind = "series", xp = 5000, label = "Rasthin's tomes", ids = series("SW_LoreScrap_CriticalPath_Book", 6) },
-    { id = "set:sw_optional", band = 3, kind = "series", xp = 2000, label = "The Scorned Wilderness strays", ids = ids("SW_LoreScrap_Optional_Book1", "SW_LoreScrap_Optional_Book2", "SW_LoreScrap_Optional_Book3", "SW_LoreScrap_PuzzleText") },
-    { id = "set:dragonwolves", band = 3, kind = "series", xp = 2500, label = "Dragonwolves", ids = series("Dragonwolves_", 3) },
-    { id = "set:zogres", band = 3, kind = "series", xp = 2500, label = "Zogres", ids = series("Zogres_", 3) },
-    { id = "set:necromancer", band = 3, kind = "series", xp = 5000, label = "The Necromancer and the Wolf", ids = series("Necromancer_And_The_Wolf_", 7) },
+    -- Band 3: 22,500 + 5,000 + 5,669 = 33,169 XP.
+    { id = "set:garou_pages", band = 3, kind = "series", xp = 2000, label = "The garou pages", ids = series("LoreScrap_D", 5) },
+    { id = "set:dragonkin_pages", band = 3, kind = "series", xp = 2000, label = "The dragonkin pages", ids = series("LoreScrap_E", 4) },
+    { id = "set:vault_puzzle", band = 3, kind = "series", xp = 1500, label = "The Vault puzzle", ids = series("Vault_Puzzle_", 2) },
+    { id = "set:sw_critical_path", band = 3, kind = "series", xp = 3000, label = "Rasthin's tomes", ids = series("SW_LoreScrap_CriticalPath_Book", 6) },
+    { id = "set:sw_optional", band = 3, kind = "series", xp = 1500, label = "The Scorned Wilderness strays", ids = ids("SW_LoreScrap_Optional_Book1", "SW_LoreScrap_Optional_Book2", "SW_LoreScrap_Optional_Book3", "SW_LoreScrap_PuzzleText") },
+    { id = "set:dragonwolves", band = 3, kind = "series", xp = 1500, label = "Dragonwolves", ids = series("Dragonwolves_", 3) },
+    { id = "set:zogres", band = 3, kind = "series", xp = 1500, label = "Zogres", ids = series("Zogres_", 3) },
+    { id = "set:necromancer", band = 3, kind = "series", xp = 3000, label = "The Necromancer and the Wolf", ids = series("Necromancer_And_The_Wolf_", 7) },
+    { id = "set:the_dragonkin", band = 3, kind = "series", xp = 2000, label = "The Dragonkin", ids = series("The_Dragonkin_", 5) },
+    { id = "set:the_withering", band = 3, kind = "series", xp = 2500, label = "The Withering", ids = series("The_Withering_", 6) },
+    { id = "set:the_rising_dead", band = 3, kind = "series", xp = 2000, label = "The Rising Dead", ids = series("The_Rising_Dead_", 5) },
     { id = "correlation:vault_memoir", band = 3, kind = "correlation", xp = 2500, label = "The Vaults, two accounts", ids = ids("Place_Vaults", "Vault_Puzzle_1") },
     { id = "correlation:ritual_and_garou", band = 3, kind = "correlation", xp = 2500, label = "The ritual and the garou", ids = ids("DogDays", "LoreScrap_D4") },
-    { id = "reconstruction:plains_and_vaults", band = 3, kind = "reconstruction", xp = 3069, label = "The plains and the Vaults", ids = band_ids(3) },
+    { id = "reconstruction:plains_and_vaults", band = 3, kind = "reconstruction", xp = 5669, label = "The plains, the Vaults and Fellhollow", ids = band_ids(3) },
 
     -- Band 4: 50,000 + 5,000 + 6,124 = 61,124 XP.
     { id = "set:first_people", band = 4, kind = "series", xp = 8000, label = "The First People", ids = series("UmS_FirstPeople_", 5) },
@@ -306,10 +315,20 @@ Sources.SETS = {
     { id = "correlation:wolf_and_goddess", band = 4, kind = "correlation", xp = 5000, label = "The wolf, the goddess and the elder's tale", ids = ids("UmS_WolfandGoddess", "LoreScrap_D5") },
     { id = "reconstruction:umbral_sands", band = 4, kind = "reconstruction", xp = 6124, label = "The Umbral Sands", ids = band_ids(4) },
 
-    -- Band 5: 300,000 + 150,000 + 211,878 = 661,878 XP.
-    { id = "set:the_dragonkin", band = 5, kind = "series", xp = 100000, label = "The Dragonkin", ids = series("The_Dragonkin_", 5) },
-    { id = "set:the_withering", band = 5, kind = "series", xp = 100000, label = "The Withering", ids = series("The_Withering_", 6) },
-    { id = "set:the_rising_dead", band = 5, kind = "series", xp = 100000, label = "The Rising Dead", ids = series("The_Rising_Dead_", 5) },
+    -- Band 5: 380,000 + 150,000 + 211,878 = 741,878 XP. Investigations cross
+    -- regions: each needs entries from several bands and a visit to the place
+    -- it is about. Pairings are design placeholders until LORE_VERIFICATION.md
+    -- checks them against the texts.
+    { id = "investigation:wrath_of_dragons", band = 5, kind = "investigation", xp = 76000, label = "The wrath of dragons", site = "keep_of_blue_flames",
+      ids = ids("LoreScrap_A2", "LoreScrap_A4", "LoreScrap_B4", "LoreScrap_B5", "CathanJournal_Castle", "CathanJournal_Velgarslair", "SW_LoreScrap_CriticalPath_Book6", "Place_DragonAltar") },
+    { id = "investigation:goddess_and_garou", band = 5, kind = "investigation", xp = 76000, label = "The goddess and the garou", site = "ghornfell",
+      ids = ids("LoreScrap_A3", "LoreScrap_B3", "LoreScrap_C5", "LoreScrap_D1", "LoreScrap_D5", "DogDays", "UmS_WolfandGoddess") },
+    { id = "investigation:guthix_departure", band = 5, kind = "investigation", xp = 76000, label = "Why Guthix left", site = "bramblemead",
+      ids = ids("LoreScrap_C1", "LoreScrap_C2", "LoreScrap_C3", "LoreScrap_C4", "LoreScrap_CastleExtra2", "Place_BramblemeadValley", "People_Guthix") },
+    { id = "investigation:lost_tribe", band = 5, kind = "investigation", xp = 76000, label = "The lost tribe", site = "dowdun_reach",
+      ids = ids("LoreScrap_B1", "LoreScrap_B2", "LoreScrap_B5", "CathanJournal_Castle", "DRLoreScrap_L15", "People_Bandos", "People_Zanik") },
+    { id = "investigation:the_withering", band = 5, kind = "investigation", xp = 76000, label = "Where the Withering came from", site = "fellhollow",
+      ids = ids("The_Withering_1", "The_Withering_6", "The_Rising_Dead_1", "The_Rising_Dead_5", "Zogres_3", "DRLoreScrap_L13", "DRLoreScrap_L16") },
     { id = "correlation:people_of_ashenfall", band = 5, kind = "correlation", xp = 150000, label = "The people of Ashenfall", ids = ids("People_Armadyl", "People_Bandos", "People_Cathan", "People_Doric", "People_Guthix", "People_Saradomin", "People_Vannaka", "People_WiseOldMan", "People_Zamorak", "People_Zanik") },
     { id = "reconstruction:history_of_ashenfall", band = 5, kind = "reconstruction", xp = 211878, label = "The history of Ashenfall", ids = live_ids() },
 }
@@ -341,7 +360,9 @@ function Sources.Site(set)
 end
 
 -- Skill lore books placed by later mods. They are normal journal entries in
--- the game's lore popup; ids are added when the books exist.
+-- the game's lore popup; ids are added when the books exist. Book XP is bonus
+-- on top of its band, never part of reaching the band's top, so no Historian
+-- level depends on another mod; the cap clamps it like any other source.
 Sources.BOOKS = {
     { key = "horticulture", band = 2, xp = 500, label = "Horticulture lore book" },
     { key = "demolition", band = 2, xp = 500, label = "Demolition lore book" },
@@ -414,12 +435,12 @@ function Sources.SetPay(set, xp, level)
     return pay
 end
 
--- XP each band pays in total: entries + sets + books.
+-- XP each band pays in total from the game's own entries and the sets built
+-- on them; equals the band's share of the curve. Books are bonus on top.
 function Sources.BandTotal(band)
     local sum = 0
     for _, e in pairs(Sources.ENTRIES) do if e.band == band then sum = sum + e.xp end end
     for _, s in ipairs(Sources.SETS) do if s.band == band then sum = sum + s.xp end end
-    for _, b in ipairs(Sources.BOOKS) do if b.band == band then sum = sum + b.xp end end
     return sum
 end
 

@@ -174,6 +174,31 @@ for P = 0, highP do
 end
 check(true, "top-up lands on the cap from every P in 0.." .. highP)
 
+-- Every band's entries and sets sum to exactly its share of the curve, books
+-- excluded (they are bonus), and every set's ids are real entries.
+local prevTop = 0
+for band, b in ipairs(Sources.BANDS) do
+    local total = Sources.BandTotal(band)
+    check(total == b.top - prevTop, string.format("band %d pays %d, curve share %d", band, total, b.top - prevTop))
+    check(Curve.LevelFor(b.top) == tonumber(b.levels:match("(%d+)$")), "band " .. band .. " top is level " .. b.levels:match("(%d+)$"))
+    prevTop = b.top
+end
+check(prevTop == 1000000, "the plan ends at 1,000,000 XP")
+for _, s in ipairs(Sources.SETS) do
+    for _, id in ipairs(s.ids) do
+        if not Sources.ENTRIES[id] then check(false, s.id .. " uses unknown id " .. id) end
+    end
+    if s.site then check(Sources.SITES[s.site] ~= nil, s.id .. " site exists") end
+end
+local fell = 0
+for id, e in pairs(Sources.ENTRIES) do
+    if id:find("The_Withering_") or id:find("The_Rising_Dead_") or id:find("The_Dragonkin_") then
+        fell = fell + 1
+        check(e.band == 3, id .. " is in band 3")
+    end
+end
+check(fell == 16, "the three Fellhollow series are in band 3")
+
 -- 2. Full runs through main.lua ------------------------------------------
 -- Each run files entries one at a time, in a random order, with a sync after
 -- each, as the game would.

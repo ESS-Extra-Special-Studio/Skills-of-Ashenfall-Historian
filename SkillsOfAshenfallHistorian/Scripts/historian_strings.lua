@@ -31,6 +31,7 @@ S.KIND = {
     series = "Set complete",
     correlation = "Correlation",
     reconstruction = "Reconstruction",
+    investigation = "Investigation",
 }
 
 -- Perks, levels 2-25 (approved 2026-10-05).
