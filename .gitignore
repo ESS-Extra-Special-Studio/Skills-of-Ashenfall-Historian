@@ -1,0 +1,9 @@
+# Player data and developer switches never ship
+SkillsOfAshenfallHistorian/Scripts/progress.txt
+SkillsOfAshenfallHistorian/dev.txt
+SkillsOfAshenfallHistorian/config.txt
+Saves/
+*.tmp
+*.log
+.tmp_*
+dist/
