@@ -2,10 +2,6 @@
 
 Historian is a RuneScape: Dragonwilds skill mod from Extra Special Studio, and the first Skills of Ashenfall mod. It is a full skill on the game's own screens: the character select grid and total level, the skills menu tile, detail panel and perk list, and the game's level-up banner and XP popup, all with the Historian badge. Historian never unlocks, gates or changes a vanilla skill.
 
-Design and research live on the Desktop, not in this repo:
-
-`<user>\<studio>\DRAGONWILDS_MASTER.md`
-
 ## v1.0.0
 
 Levels 1–25 (3,152 XP). Historian XP comes from the knowledge entries in the game's journal:
@@ -29,7 +25,7 @@ Progress is saved per character, by the character's id from the game save, in `%
 
 If the installed game is a different Steam build from the one Historian was tested on (25632050), one card says so; it shows once per build.
 
-The 1–99 plan, the lore-book gates and the level 75 combat gates are in `<studio>\docs\HISTORIAN_1-99.md`. What appears on each game screen, with screenshots, is in `docs\SKILL_SURFACE_CHECKLIST.md`.
+Later versions extend Historian towards level 99 as new regions open.
 
 ## Keys and settings
 
@@ -87,3 +83,7 @@ List Skills of Ashenfall: Historian as a Required Dependency on your CurseForge 
 ## Licence
 
 See [LICENSE](LICENSE).
+
+## Not affiliated
+
+Skills of Ashenfall is a fan project by Extra Special Studio. It is not affiliated with, endorsed by, or sponsored by Jagex Ltd. RuneScape and RuneScape: Dragonwilds are trademarks of Jagex Ltd.
