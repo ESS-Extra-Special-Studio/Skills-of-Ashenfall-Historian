@@ -32,9 +32,10 @@ local function add(band, kind, xp, rows)
 end
 
 -- Band 1, levels 1-25: Bramblemead Valley (Brynmoor). 20 entries, 1,148 XP.
--- With the perks' XP bonus the band pays more than 3,152; the cap clamps it,
--- and the final reconstruction tops up to the cap, so owning every band 1
--- entry always ends exactly on 3,152 (level 25), in any order.
+-- Everything but the reconstruction pays at most 2,798 XP, even with every
+-- perk, so level 25 always comes from the reconstruction. It needs 18 of the
+-- 20 entries (two can be missed) and tops up to exactly 3,152 (level 25) in
+-- any order; anything paid after it is clamped by the cap.
 add(1, "place", 79, {
     { "Place_BramblemeadValley", "Bramblemead Valley" },
     { "Place_TempleWoods", "Temple Woods" },
@@ -250,13 +251,21 @@ local function live_ids()
     return out
 end
 
+-- Places a reconstruction is pieced together at: the player must stand within
+-- radius (Unreal units, centimetres) of x, y with the evidence owned. A site
+-- with no coordinates is not enforced, so the reconstruction pays anywhere.
+Sources.SITES = {
+    bramblemead = { label = "the ruins of Bramblemead village", x = nil, y = nil, radius = 6000 },
+}
+
 -- Awards for owning a whole set (series), two pages that disagree
--- (correlation), or a band's whole record (reconstruction). Each pays once,
--- in its own band, as soon as every listed id is owned.
+-- (correlation), or most of a band's record (reconstruction). Each pays once,
+-- in its own band, as soon as its ids are owned: every id for a series or
+-- correlation, need of them for a reconstruction.
 Sources.SETS = {
-    -- Band 1: 650 + 700 + 654 = 2,004 XP. The reconstruction needs every band
-    -- 1 entry and is listed last, so it is always the final band 1 payment;
-    -- it pays at least what is left to the band's top (Sources.SetPay).
+    -- Band 1: 650 + 700 + 654 = 2,004 XP. The reconstruction needs 18 of the
+    -- 20 band 1 entries; it pays at least what is left to the band's top
+    -- (Sources.SetPay).
     { id = "set:dragon_attack", band = 1, kind = "series", xp = 175, label = "The dragon attack, five accounts", ids = series("LoreScrap_A", 5) },
     { id = "set:goblin_writings", band = 1, kind = "series", xp = 175, label = "Goblin writings", ids = series("LoreScrap_B", 5) },
     { id = "set:valley_druids", band = 1, kind = "series", xp = 150, label = "The valley's Guthixian pages", ids = ids("LoreScrap_C2", "LoreScrap_C3", "LoreScrap_C4", "LoreScrap_C5") },
@@ -265,7 +274,7 @@ Sources.SETS = {
     { id = "correlation:abandoned_village", band = 1, kind = "correlation", xp = 175, label = "Who abandoned Bramblemead", ids = ids("LoreScrap_A1", "LoreScrap_C4") },
     { id = "correlation:goblin_alliance", band = 1, kind = "correlation", xp = 175, label = "The goblin alliance", ids = ids("LoreScrap_A3", "LoreScrap_B3") },
     { id = "correlation:velgar_chant", band = 1, kind = "correlation", xp = 175, label = "Why the goblins chant Velgar", ids = ids("CathanJournal_Castle", "LoreScrap_B5") },
-    { id = "reconstruction:fall_of_bramblemead", band = 1, kind = "reconstruction", xp = 654, label = "The fall of Bramblemead", ids = band_ids(1) },
+    { id = "reconstruction:fall_of_bramblemead", band = 1, kind = "reconstruction", xp = 654, label = "The fall of Bramblemead", ids = band_ids(1), need = 18, site = "bramblemead" },
 
     -- Band 2: 900 + 700 + 2,400 + 2,477 = 6,477 XP (plus 1,500 from the three skill books).
     { id = "set:guthixian_pages", band = 2, kind = "series", xp = 900, label = "The Guthixian pages", ids = series("LoreScrap_C", 5) },
@@ -305,6 +314,32 @@ Sources.SETS = {
     { id = "reconstruction:history_of_ashenfall", band = 5, kind = "reconstruction", xp = 211878, label = "The history of Ashenfall", ids = live_ids() },
 }
 
+-- Every reconstruction can be finished with two of its entries missing.
+for _, s in ipairs(Sources.SETS) do
+    if s.kind == "reconstruction" and not s.need then s.need = #s.ids - 2 end
+end
+
+-- Ids a set needs owned before it pays.
+function Sources.Need(set)
+    return set.need or #set.ids
+end
+
+-- How many of a set's ids are owned, given owns(id).
+function Sources.Have(set, owns)
+    local n = 0
+    for _, id in ipairs(set.ids) do
+        if owns(id) then n = n + 1 end
+    end
+    return n
+end
+
+-- The site a set must be finished at, or nil when there is none to enforce.
+function Sources.Site(set)
+    local site = set.site and Sources.SITES[set.site]
+    if site and site.x and site.y then return site end
+    return nil
+end
+
 -- Skill lore books placed by later mods. They are normal journal entries in
 -- the game's lore popup; ids are added when the books exist.
 Sources.BOOKS = {
@@ -339,22 +374,12 @@ Sources.PERK_HE_SAID = 14
 Sources.PERK_PRIMARY = 19
 Sources.PRIMARY_PERCENT = 125
 
-local MAJORS = {
-    { level = 3, name = "Nose in a Book", description = "Picking up a new piece of history tells you it's waiting in your journal." },
-    { level = 6, name = "Dog-Eared Pages", description = "Your Historian status now counts the unread history in your journal, by kind." },
-    { level = 10, name = "Footnotes", description = "Finding part of a set now tells you how much of it is still missing." },
-    { level = 14, name = "He Said, She Said", description = "When a page you find is contradicted elsewhere, you learn which page to look for." },
-    { level = 19, name = "Primary Sources", description = "Cathan's journals grant 25% more Historian XP. He did go to a lot of trouble." },
-    { level = 25, name = "Peer Reviewed", description = "Other scholars now take your notes seriously. Opens doors that ask for a Historian." },
-}
-
--- Rows for RegisterSkill, in level order.
-function Sources.PerkRows()
+-- Rows for RegisterSkill, in level order. strings: historian_strings.lua.
+function Sources.PerkRows(strings)
     local rows = {}
-    for _, m in ipairs(MAJORS) do rows[#rows + 1] = { level = m.level, name = m.name, description = m.description } end
+    for level, p in pairs(strings.PERKS) do rows[#rows + 1] = { level = level, name = p[1], description = p[2] } end
     for _, lv in ipairs(Sources.MINOR_LEVELS) do
-        rows[#rows + 1] = { level = lv, minor = true, name = "+0.5% Historian XP",
-            description = "All Historian XP is increased by a further 0.5%." }
+        rows[#rows + 1] = { level = lv, minor = true, name = strings.MINOR_PERK[1], description = strings.MINOR_PERK[2] }
     end
     table.sort(rows, function(a, b) return a.level < b.level end)
     return rows
@@ -377,10 +402,9 @@ function Sources.Pay(base, entryType, level)
     return math.floor((base * permille * percent + 50000) / 100000)
 end
 
--- XP a set pays. A band's reconstruction needs every entry in the band and is
--- its last payment, so it pays at least what is left to the band's top:
--- owning everything always ends exactly there, whatever order the perks'
--- bonus and rounding saw. Overshoot is clamped by the cap.
+-- XP a set pays. A band's reconstruction pays at least what is left to the
+-- band's top, so finishing it always ends exactly there, whatever order the
+-- perks' bonus and rounding saw. Overshoot is clamped by the cap.
 function Sources.SetPay(set, xp, level)
     local pay = Sources.Pay(set.xp, nil, level)
     local band = Sources.BANDS[set.band]
