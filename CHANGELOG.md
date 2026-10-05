@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 (unreleased)
+## 1.0.0 (2026-10-05)
 
 - Historian levels 1–25 from the game's journal knowledge entries in the starting valley, paid once per entry id from a fixed table, in any order. Four sets, four correlations and one reconstruction pay on top; everything together is exactly 3,152 XP. Tutorials pay nothing. Entries from later regions are remembered for later bands.
 - Existing characters are credited for entries they already have, quietly, with one set of notifications. Saves from the earlier type-band build are rebuilt once by id.
@@ -22,5 +22,5 @@
 - A source that the 3,152 cap clamps to nothing is still recorded as paid, so it can never pay later.
 - F8 (grant the next unpaid entry) and F5 (log your position) only load with `dev.txt`.
 - `tools\package.ps1` builds the release zip from an allowlist of tracked files.
-- Needs ESL:DragonWilds 1.1.0 or later and says so in the log if ESL is missing or older. The ESLDragonWilds mod now draws Historian on every screen; Historian only registers and awards XP.
+- Needs ESL:DragonWilds 1.0.0 or later and says so in the log if ESL is missing or older. The ESLDragonWilds mod now draws Historian on every screen; Historian only registers and awards XP.
 - Registers as version 1.0.0 under the stable skill id `Historian`, so other mods can require a Historian level (`ESL.GetLevel(ESL.HISTORIAN)`, `{ skill = ESL.HISTORIAN, level = n }`) and check that Historian is installed (`ESL.Depends`).

@@ -23,8 +23,8 @@ if not okESL then
     log("ESL:DragonWilds is missing or failed to load. Install it next to this mod. (" .. tostring(ESL) .. ")")
     return
 end
-if not (ESL.RequireVersion and ESL.RequireVersion("1.1.0", S.MOD_NAME) and ESL.Every) then
-    log("ESL:DragonWilds is too old for this Historian. Install the latest ESL:DragonWilds 1.1.0 or later.")
+if not (ESL.RequireVersion and ESL.RequireVersion("1.0.0", S.MOD_NAME) and ESL.Every) then
+    log("ESL:DragonWilds is too old for this Historian. Install the latest ESL:DragonWilds 1.0.0 or later.")
     return
 end
 

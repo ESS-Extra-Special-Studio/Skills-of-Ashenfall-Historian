@@ -30,9 +30,11 @@ Historian never unlocks, gates or changes a vanilla skill. The game's own save f
 2. Install ESL:DragonWilds (Required Dependency; the CurseForge app installs it for you).
 3. Install Historian. Both folders sit side by side in `RSDragonwilds\Content\Paks\~mods` and ship with `enabled.txt`.
 
+To uninstall, remove Historian in the CurseForge app (or delete its folder). Your progress stays in `%LOCALAPPDATA%\RSDragonwilds\Saved\ESLDragonWilds` in case you come back; the game's own saves are never changed.
+
 ## Relations
 
-- **Required Dependency:** ESL:DragonWilds 1.1.0 or later.
+- **Required Dependency:** ESL:DragonWilds 1.0.0 or later.
 - **Not on CurseForge:** UE4SS for RuneScape: Dragonwilds (see Install).
 - **Used by:** Skills of Ashenfall: Horticulture (needs Historian 25).
 
@@ -44,11 +46,14 @@ Skills of Ashenfall is a fan project by Extra Special Studio. It is not affiliat
 
 ## Screenshots
 
-From `<studio>\docs\screenshots\test-session-2026-10-05\`:
+From `<studio>\docs\screenshots\release-1.0.0\`, taken on the release install (vanilla skills plus Historian only, no dev tools showing):
 
-1. `134-final-charselect.png`: Historian 12/25 on the character select grid, total level 126 on both sides.
-2. `106-l12-tooltip-13.png`: a reached Historian perk tooltip (crop to the perk list; the left column shows test-only tiles).
-3. `25-ledger-l2.png`: the F7 ledger.
-4. `83-l6-card-09.png`: a Historian card over the world.
+1. `historian-character-select.png`: Historian 12/25 on the character select grid, total level 126 on both sides.
+2. `historian-skills-detail.png`: the skills menu with the Historian tile selected: level 12, 693/736 XP, +4% Historian XP, perks 9 to 12 reached and 13 onward locked.
+3. `historian-perk-footnotes.png`: the game's own tooltip for the Footnotes perk (level 10).
+4. `historian-skills-perks-later.png`: the later perk rows up to Peer Reviewed at 25.
+5. `historian-ledger-f7.png`: the F7 ledger over the world.
 
-Still to capture on the final install: Historian in the skills menu (the session's `15` and `95` shots show the test-only Example and Horticulture tiles), the game's level-up banner with the Historian badge, and the catch-up card on a fresh load.
+From `test-session-2026-10-05\`: `83-l6-card-09.png`, a Historian card over the world.
+
+Not captured: the game's level-up banner and XP popup with the Historian badge (they need a real Historian gain on the release character; the same banner with the Horticulture badge is in Horticulture's `horticulture-level-up-badge.png`).

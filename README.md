@@ -46,8 +46,8 @@ Developer keys load only with a `dev.txt` file next to the `Scripts` folder, and
 ## Requirements
 
 - RuneScape: Dragonwilds, Steam
-- UE4SS for this game
-- [ESL:DragonWilds](../ESL-DragonWilds) 1.1.0 or later, installed next to this mod. On CurseForge it is a Required Dependency.
+- UE4SS for this game (3.0.1, the "UE4SS Steam (latest)" build)
+- ESL:DragonWilds 1.0.0 or later, installed next to this mod. On CurseForge it is a Required Dependency.
 
 ## Install
 
@@ -67,6 +67,12 @@ The `ESLDragonWilds` mod draws Historian on the game's screens, so it must be en
 `[Skills of Ashenfall: Historian] Loaded`
 
 `[ESL:DragonWilds] Showing Historian 1.0.0`
+
+If `Binaries\Win64\ue4ss\Mods\mods.txt` names one of these mods, that line wins over `enabled.txt`: `: 0` there keeps the mod off.
+
+## Uninstall
+
+Delete the `SkillsOfAshenfallHistorian` folder from `~mods`, or disable it in CurseForge. Historian progress stays in `%LOCALAPPDATA%\RSDragonwilds\Saved\ESLDragonWilds\` in case you reinstall; delete the `*.Historian.txt` files there to remove it for good. The game's own saves are never changed, so the vanilla skills and totals are as they were. Remove ESL:DragonWilds as well if no other mod needs it.
 
 ## Building on Historian
 
