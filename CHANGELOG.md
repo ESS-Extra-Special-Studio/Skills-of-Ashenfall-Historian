@@ -2,25 +2,31 @@
 
 ## 1.0.0 (2026-10-05)
 
-- Historian levels 1–25 from the game's journal knowledge entries in the starting valley, paid once per entry id from a fixed table, in any order. Four sets, four correlations and one reconstruction pay on top; everything together is exactly 3,152 XP. Tutorials pay nothing. Entries from later regions are remembered for later bands.
-- Existing characters are credited for entries they already have, quietly, with one set of notifications. Saves from the earlier type-band build are rebuilt once by id.
-- Shows on the character select grid and total level, and on the skills menu tile, detail panel and perk list.
-- Uses the game's own level-up banner and XP popup, with the Historian badge. Historian never unlocks, gates or changes a vanilla skill.
-- Progress is saved per character, keyed by the character's id in the game save, in `%LOCALAPPDATA%\RSDragonwilds\Saved\ESLDragonWilds` (via ESL:DragonWilds). A save from an earlier test build moves to the first character that loads.
-- Character select adds every registered custom skill's level to both total-level numbers, the header and the character list, without counting twice on a redraw.
-- Transparent badge, so no black box behind the icon.
-- Perks at levels 2–25 (approved set; MOD LORE wording):
-  - 18 minor rows of +0.5% Historian XP, with the running total in the skills menu's middle panel.
-  - Majors: Nose in a Book (3), Dog-Eared Pages (6), Footnotes (10), He Said, She Said (14), Primary Sources (19) and Peer Reviewed (25, the Historian 25 gate).
-  - The reconstruction tops up to the 3,152 cap, so finishing the valley ends exactly on level 25 in any order. The perk bonuses are not trimmed to make this work.
-- The reconstruction needs any 18 of the 20 valley entries, then a visit to the ruins of Bramblemead village, announced by a card.
-- Each correlation files a short note on what its two pages share, after the game's lore popup closes.
-- A first-run card for new characters; a catch-up card for existing ones, saying what was credited from the journal. A one-time card at Historian 25 instead of a plain announcement.
-- F7 opens the ledger: records, set progress, correlations, the reconstruction, the next thing to look for, entries kept for later regions, and unread history from level 6.
-- `config.txt` (created on first run): `ledger_key`, `quiet` (no cards) and `debug` (extra log detail).
-- A one-time card when the Steam build differs from the tested build 25632050.
-- A source that the 3,152 cap clamps to nothing is still recorded as paid, so it can never pay later.
-- F8 (grant the next unpaid entry) and F5 (log your position) only load with `dev.txt`.
-- `tools\package.ps1` builds the release zip from an allowlist of tracked files.
-- Needs ESL:DragonWilds 1.0.0 or later and says so in the log if ESL is missing or older. The ESLDragonWilds mod now draws Historian on every screen; Historian only registers and awards XP.
-- Registers as version 1.0.0 under the stable skill id `Historian`, so other mods can require a Historian level (`ESL.GetLevel(ESL.HISTORIAN)`, `{ skill = ESL.HISTORIAN, level = n }`) and check that Historian is installed (`ESL.Depends`).
+The first release. Needs ESL:DragonWilds 1.0.0.
+
+### Features
+
+- Historian, levels 1 to 25 (3,152 XP), trained from the knowledge entries in your journal.
+- The 20 starting-valley entries each pay once, in any order: lore scraps, place records and Cathan's journals. Tutorials pay nothing.
+- Four sets and four correlations (two pages that answer each other) pay on top. Each correlation files a short note on what the two pages say together, once the game's lore popup closes.
+- The fall of Bramblemead: once you have 18 of the 20 entries, a card sends you to the ruins of Bramblemead village. Finishing it always lands you on level 25.
+- Entries from later regions are remembered and pay when their part of Historian opens in a later version.
+- A perk at every level from 2 to 25. Eighteen of them add 0.5% Historian XP each, and the running total shows in the skills menu. The rest are Nose in a Book (3), Dog-Eared Pages (6), Footnotes (10), He Said, She Said (14), Primary Sources (19) and Peer Reviewed (25, the Historian 25 requirement other mods check).
+- Historian shows on the character select grid and in the total level, and has its own tile, detail panel and perk list in the skills menu. It uses the game's own level-up banner and XP popup, with the Historian badge.
+- Characters made before the mod are credited for what their journal already holds, with one card saying what was found. New characters get a short card explaining the skill instead.
+- F7 opens the ledger: records filed, set progress, correlations, the reconstruction, what to look for next and entries kept for later. From level 6 it also counts your unread history.
+- `config.txt` is written on first run: `ledger_key`, `quiet` (no Historian cards) and `debug` (more detail in the log).
+- A one-time card if your game build differs from the one Historian was tested on (25632050).
+- Historian never unlocks, gates or changes a vanilla skill, and only ever reads the game's own saves.
+
+### Changes
+
+- Saves from the earlier test build are rebuilt once from the journal. Old XP amounts are not carried over.
+
+### Technical notes
+
+- Skill id `Historian`, version 1.0.0. Other mods can require it with `ESL.Depends(ESL.HISTORIAN, "1.0.0", ...)`, read it with `ESL.GetLevel(ESL.HISTORIAN)`, or gate on `{ skill = ESL.HISTORIAN, level = n }`.
+- Progress is saved per character, by the character's id from the game save, in `%LOCALAPPDATA%\RSDragonwilds\Saved\ESLDragonWilds`.
+- An entry is paid once by its id, from a fixed table. An entry the 3,152 cap clamps to nothing still counts as paid, so it can never pay later.
+- Developer keys (F8, F5, F9, F11, F6) only load when a `dev.txt` sits next to the `Scripts` folder.
+- `tools\package.ps1` builds the release zip from a list of tracked files.
