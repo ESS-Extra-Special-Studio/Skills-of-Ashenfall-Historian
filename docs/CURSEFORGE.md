@@ -5,16 +5,18 @@ Draft text for the CurseForge project page. No project exists yet; links are add
 ## Project
 
 - **Name:** Skills of Ashenfall: Historian
-- **Summary (one line):** A new skill: piece together the history of Ashenfall from what its people left behind.
+- **Summary (one line):** A new skill for reading everything Ashenfall's people left lying about.
 - **Category:** Gameplay
 - **Game version:** Steam build 25632050
 - **Licence:** see LICENSE in the zip
 
 ## Description
 
-Historian is a new skill for RuneScape: Dragonwilds, levels 1 to 25, and the first Skills of Ashenfall mod from Extra Special Studio. It sits on the game's own screens like any vanilla skill: the character select grid and total level, the skills menu tile, detail panel and perk list, and the game's level-up banner and XP popup, all with the Historian badge.
+Historian is a new skill for RuneScape: Dragonwilds, levels 1 to 25, and the first Skills of Ashenfall mod from Extra Special Studio. You've been picking up lore scraps all along. Now they count.
 
-**How it trains.** Historian XP comes from the knowledge entries your journal files: lore scraps, place records and Cathan's journals in the starting valley. Each pays once, in any order. Completing a set, or owning two pages that answer each other, pays on top. The last step, the fall of Bramblemead, needs 18 of the 20 entries and a visit to the ruins of Bramblemead village, and takes you exactly to level 25.
+It looks like any vanilla skill: it's on the character select grid and in the total level, has its own tile, detail panel and perk list in the skills menu, and gets the game's own level-up banner and XP popup with the Historian badge.
+
+**How it trains.** Every knowledge entry your journal files in the starting valley pays XP once, in any order: lore scraps, place records and Cathan's journals. Finishing a set pays extra, and so does owning two pages that answer each other. The last step, the fall of Bramblemead, needs 18 of the 20 entries and a trip to the ruins of Bramblemead village. It lands you on level 25 exactly.
 
 **Perks at every level.** Small XP bonuses on most rows, plus Nose in a Book (3), Dog-Eared Pages (6), Footnotes (10), He Said, She Said (14), Primary Sources (19) and Peer Reviewed (25).
 

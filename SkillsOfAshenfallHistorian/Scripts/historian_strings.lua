@@ -7,10 +7,10 @@ local S = {}
 S.SKILL_NAME = "Historian"
 S.MOD_NAME = "Skills of Ashenfall: Historian"
 S.MAX_LEVEL_TEXT = "Historian 25: Bramblemead's past, pieced together"
-S.FLAVOUR = "Piece together the history of Ashenfall from what its people left behind."
+S.FLAVOUR = "Ashenfall's people left their history lying about. Someone ought to pick it up."
 S.LEVEL_UP_TEXT = "Find lore scraps, journals and place records to gain Historian XP."
 S.PANEL_LABEL = "Progress to next level"
-S.TRAINING_TEXT = "Find lore scraps, journals and place records; each one your journal files, and each set or contradiction you complete, levels this skill."
+S.TRAINING_TEXT = "Find lore scraps, journals and place records. Every one your journal files pays XP, and so does finishing a set or spotting two pages that disagree."
 S.PERK_SUMMARY_LABEL = "Historian XP"
 
 S.TYPE = {
@@ -44,12 +44,12 @@ S.KIND = {
 
 -- Perks, levels 2-25 (approved 2026-10-05).
 S.PERKS = {
-    [3] = { "Nose in a Book", "Picking up a new piece of history tells you it's waiting in your journal." },
-    [6] = { "Dog-Eared Pages", "Your Historian ledger now counts the unread history in your journal, by kind." },
-    [10] = { "Footnotes", "Finding part of a set now tells you how much of it is still missing." },
-    [14] = { "He Said, She Said", "When a page you find is contradicted elsewhere, you learn which page to look for." },
+    [3] = { "Nose in a Book", "You're told when new history lands in your journal." },
+    [6] = { "Dog-Eared Pages", "Your ledger counts the unread history in your journal, by kind." },
+    [10] = { "Footnotes", "Find part of a set and you're told how much of it is still missing." },
+    [14] = { "He Said, She Said", "When a page you find is disputed by another, you learn which one to look for." },
     [19] = { "Primary Sources", "Cathan's journals grant 25% more Historian XP. He did go to a lot of trouble." },
-    [25] = { "Peer Reviewed", "Other scholars now take your notes seriously. Opens doors that ask for a Historian." },
+    [25] = { "Peer Reviewed", "Other scholars finally take your notes seriously. Opens doors that ask for a Historian." },
 }
 S.MINOR_PERK = { "+0.5% Historian XP", "All Historian XP is increased by a further 0.5%." }
 
@@ -83,7 +83,7 @@ S.CEREMONY_KICKER = "HISTORIAN"
 S.CEREMONY_CAUGHT_UP = "Your journal already held %d records"
 S.CEREMONY_CAUGHT_UP_DETAIL = "Read with a historian's eye, that makes you level %d. Press %s for your ledger."
 S.CEREMONY_FIRST = "A new skill: Historian"
-S.CEREMONY_FIRST_DETAIL = "Every lore scrap, journal and place record you find now teaches you history. Press %s for your ledger."
+S.CEREMONY_FIRST_DETAIL = "From now on, every lore scrap, journal and place record you find counts. Press %s for your ledger."
 
 -- Ledger (status panel).
 S.LEDGER_TITLE = "Ledger: %s (levels %s)"
