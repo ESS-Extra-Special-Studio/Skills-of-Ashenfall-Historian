@@ -32,4 +32,5 @@ The first release. Needs ESL:DragonWilds 1.0.0.
 - Skill id `Historian`, version 1.0.0. Other mods can require it with `ESL.Depends(ESL.HISTORIAN, "1.0.0", ...)`, read it with `ESL.GetLevel(ESL.HISTORIAN)`, or gate on `{ skill = ESL.HISTORIAN, level = n }`.
 - Progress is saved per character, by the character's id from the game save, in `%LOCALAPPDATA%\RSDragonwilds\Saved\ESLDragonWilds`.
 - An entry is paid once by its id, from a fixed table. An entry the 3,152 cap clamps to nothing still counts as paid, so it can never pay later.
-- `tools\package.ps1` builds the release zip from a list of tracked files.
+- The badge is a UTexture2D cooked into `SoAHistorian_P.{pak,utoc,ucas}` (`/Game/Mods/SoAHistorian/UI/T_HistorianSkillIcon`, UE 5.6, uncompressed, no mips) and registered by that asset path, so the release holds only file types CurseForge accepts for Dragonwilds UE4SS mods. The readme, changelog and licence ship as `.txt`.
+- `tools\package.ps1` builds the release zip from a list of tracked files and refuses any file type CurseForge rejects (only .txt, .lua, .dll, .pak, .utoc and .ucas).

@@ -55,7 +55,7 @@ CurseForge installs Dragonwilds mods into:
 
 `RSDragonwilds\RSDragonwilds\Content\Paks\~mods`
 
-Put the `ESLDragonWilds` and `SkillsOfAshenfallHistorian` folders side by side in that `~mods` directory. Both ship with `enabled.txt`. If you list mods in `~mods\mods.txt` instead, enable both:
+Put the `ESLDragonWilds` and `SkillsOfAshenfallHistorian` folders side by side in that `~mods` directory. Both ship with `enabled.txt`. Historian's folder holds `enabled.txt`, the Lua scripts in `Scripts`, its badge cooked into `SoAHistorian_P.pak`, `.utoc` and `.ucas` (keep the three together; the game mounts them from the mod folder), and `README.txt`, `CHANGELOG.txt` and `LICENSE.txt`. If you list mods in `~mods\mods.txt` instead, enable both:
 
 ```
 ESLDragonWilds : 1

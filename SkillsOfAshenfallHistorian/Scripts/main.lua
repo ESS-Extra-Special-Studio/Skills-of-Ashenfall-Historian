@@ -51,7 +51,8 @@ ESL.RegisterSkill({
     name = S.SKILL_NAME,
     version = VERSION,
     mod = S.MOD_NAME,
-    iconFile = dir .. "\\..\\Textures\\historian-skill-icon.png",
+    -- Cooked into SoAHistorian_P.pak beside Scripts (Textures\historian-skill-icon.png is its source).
+    iconFile = "/Game/Mods/SoAHistorian/UI/T_HistorianSkillIcon.T_HistorianSkillIcon",
     capXp = Sources.V1_CAP,
     -- v1.0.0 content ends at 25; every max-level display uses this.
     maxLevel = 25,
