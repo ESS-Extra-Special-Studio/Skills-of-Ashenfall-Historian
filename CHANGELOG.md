@@ -23,6 +23,10 @@ The first release. Needs ESL:DragonWilds 1.0.0.
 
 - Saves from the earlier test build are rebuilt once from the journal. Old XP amounts are not carried over.
 
+### Fixes
+
+- The Historian badge no longer goes missing on character select.
+
 ### Technical notes
 
 - Skill id `Historian`, version 1.0.0. Other mods can require it with `ESL.Depends(ESL.HISTORIAN, "1.0.0", ...)`, read it with `ESL.GetLevel(ESL.HISTORIAN)`, or gate on `{ skill = ESL.HISTORIAN, level = n }`.
