@@ -8,3 +8,11 @@ Saves/
 .tmp_*
 dist/
 build-warned.txt
+
+# Dev-only tooling and switches: never committed (a local pre-push hook blocks them too)
+**/dev_prob[e]*
+**/devkey[s]*
+**/dev-keys*
+**/dev.txt
+**/dev-unlock.txt
+**/debug.txt
