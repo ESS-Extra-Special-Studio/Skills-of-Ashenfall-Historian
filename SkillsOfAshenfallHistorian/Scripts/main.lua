@@ -40,10 +40,7 @@ local TESTED_BUILD = "25632050"
 -- Entry titles as the journal shows them (JournalEntryData.DisplayName).
 local titles = {}
 
-local devFlag = io.open(dir .. "\\..\\dev.txt", "r")
-local DEV = devFlag ~= nil
-if devFlag then devFlag:close() end
-local VERBOSE = DEV or Config.debug
+local VERBOSE = Config.debug
 
 local function detail(msg)
     if VERBOSE then log(msg) end
@@ -460,59 +457,5 @@ RegisterKeyBindAsync(Key[Config.ledger_key], {}, function()
         ESL.ToggleStatus(SKILL, ledger)
     end, "Historian ledger")
 end)
-
--- Developer keys, only when a dev.txt file sits next to the mod's Scripts
--- folder. The F8 grant is unearned, so release builds never register it.
-if DEV then
-    RegisterKeyBindAsync(Key.F8, {}, function()
-        ESL.RunInGame(function()
-            if not ESL.InWorld() then log(S.LOG_WORLD_FIRST) return end
-            for _, id in ipairs(Sources.ORDER) do
-                local e = Sources.ENTRIES[id]
-                if Sources.IsOpen(e.band) and not ESL.HasPaid(SKILL, id) then
-                    log("Test grant " .. id)
-                    grant(id)
-                    check_sets()
-                    return
-                end
-            end
-            log("Every open Historian entry is already paid")
-        end, "Historian test grant")
-    end)
-    -- Logs the player's position, to record a reconstruction site.
-    RegisterKeyBindAsync(Key.F5, {}, function()
-        ESL.RunInGame(function()
-            local x, y, z = ESL.Location()
-            log(x and string.format("Site capture: x = %.0f, y = %.0f, z = %.0f", x, y, z) or "Site capture: no position (load into a world)")
-        end, "Historian site capture")
-    end)
-    RegisterKeyBindAsync(Key.F9, {}, function()
-        ESL.SelectInSkillsMenu(SKILL)
-    end)
-    RegisterKeyBindAsync(Key.F11, {}, function()
-        ESL.TestNotifications(SKILL)
-    end)
-    RegisterKeyBindAsync(Key.F6, {}, function()
-        ESL.RunInGame(function()
-            local Probe = require("probe")
-            Probe.Perks()
-            for _, prompt in ipairs(FindAllOf("WBP_HUD_InteractionPrompt_C") or {}) do
-                pcall(function()
-                    local actor = prompt.CurrentWorldActor
-                    if actor:IsValid() then
-                        Probe.log("prompt actor " .. actor:GetFullName())
-                        local cls = actor:GetClass()
-                        for _ = 1, 6 do
-                            if not cls:IsValid() then break end
-                            Probe.log("  class " .. cls:GetFullName())
-                            cls = cls:GetSuperStruct()
-                        end
-                    end
-                end)
-            end
-        end, "Historian probe")
-    end)
-    log("Developer keys on: F8 grants the next unpaid entry, F5 logs your position, F9 selects Historian in the skills menu, F11 tests notifications, F6 dumps widget classes")
-end
 
 log("Using ESL:DragonWilds. " .. Config.ledger_key .. " shows the Historian ledger." .. (Config.quiet and " Quiet mode is on." or ""))

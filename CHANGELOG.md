@@ -32,5 +32,4 @@ The first release. Needs ESL:DragonWilds 1.0.0.
 - Skill id `Historian`, version 1.0.0. Other mods can require it with `ESL.Depends(ESL.HISTORIAN, "1.0.0", ...)`, read it with `ESL.GetLevel(ESL.HISTORIAN)`, or gate on `{ skill = ESL.HISTORIAN, level = n }`.
 - Progress is saved per character, by the character's id from the game save, in `%LOCALAPPDATA%\RSDragonwilds\Saved\ESLDragonWilds`.
 - An entry is paid once by its id, from a fixed table. An entry the 3,152 cap clamps to nothing still counts as paid, so it can never pay later.
-- Developer keys (F8, F5, F9, F11, F6) only load when a `dev.txt` sits next to the `Scripts` folder.
 - `tools\package.ps1` builds the release zip from a list of tracked files.

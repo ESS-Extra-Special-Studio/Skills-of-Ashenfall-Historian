@@ -1,7 +1,7 @@
 # Builds the release zip for Skills of Ashenfall: Historian from an allowlist.
 #
 # Only files tracked by git AND matching $Allow are packed, so local files
-# (dev.txt, config.txt, build-warned.txt, logs) can never ship; config.txt is
+# (config.txt, build-warned.txt, logs) can never ship; config.txt is
 # written with defaults on first run. The zip holds one
 # SkillsOfAshenfallHistorian folder, ready to drop into Content\Paks\~mods
 # next to ESLDragonWilds.

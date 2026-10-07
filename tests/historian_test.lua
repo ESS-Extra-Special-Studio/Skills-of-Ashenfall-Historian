@@ -2,8 +2,10 @@
 -- strings against a mock ESL (same cap, paid and read rules as ESL's store)
 -- and a fake journal. Run with Fengari or any Lua 5.3+:
 --   node run.js run tests/historian_test.lua "<repo>\SkillsOfAshenfallHistorian\Scripts\?.lua;<esl>\ESLDragonWilds\Scripts\?.lua"
--- Needs SCRIPTS (the Historian Scripts folder) set below or in the env table.
-local SCRIPTS = HISTORIAN_SCRIPTS or "<user>\\IdeaProjects\\Skills-of-Ashenfall-Historian\\SkillsOfAshenfallHistorian\\Scripts"
+-- SCRIPTS (the Historian Scripts folder) comes from HISTORIAN_SCRIPTS or the
+-- package.path entry above.
+local SCRIPTS = HISTORIAN_SCRIPTS or package.path:match("([^;]*SkillsOfAshenfallHistorian[\\/]Scripts)[\\/]%?%.lua")
+assert(SCRIPTS, "put <repo>\\SkillsOfAshenfallHistorian\\Scripts\\?.lua on package.path")
 
 local Curve = require("curve")
 local fails, passes = 0, 0

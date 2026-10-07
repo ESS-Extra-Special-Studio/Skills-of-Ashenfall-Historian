@@ -1,6 +1,5 @@
-# Player data and developer switches never ship
+# Player data never ships
 SkillsOfAshenfallHistorian/Scripts/progress.txt
-SkillsOfAshenfallHistorian/dev.txt
 SkillsOfAshenfallHistorian/config.txt
 Saves/
 *.tmp
@@ -9,10 +8,11 @@ Saves/
 dist/
 build-warned.txt
 
-# Dev-only tooling and switches: never committed (a local pre-push hook blocks them too)
+# Local developer files are never committed
 **/dev_prob[e]*
 **/devkey[s]*
 **/dev-keys*
 **/dev.txt
 **/dev-unlock.txt
 **/debug.txt
+.cursor/

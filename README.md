@@ -41,7 +41,7 @@ debug=false
 
 `ledger_key` takes any UE4SS key name (F1 to F12, HOME, END and so on). `quiet=true` turns off Historian's cards and keeps only the game's own XP popups and level-up banner. `debug=true` adds detail to the UE4SS log.
 
-Developer keys load only with a `dev.txt` file next to the `Scripts` folder, and are not part of normal play: F8 grants the next unpaid starting-valley entry, F5 logs your position, F9 selects Historian in the open skills menu, F11 plays every Historian notification, and F6 writes widget dumps to the log. Historian puts no requirement on any world object.
+Historian puts no requirement on any world object.
 
 ## Requirements
 
